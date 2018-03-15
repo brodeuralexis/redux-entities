@@ -3,12 +3,12 @@
 ## _NPM_
 
 ```sh
-npm install --save brodeuralexis/redux-entities#1.0.0
+npm install --save brodeuralexis/redux-entities#1.1.0
 ```
 
 ## _Yarn_
 ```
-yarn add brodeuralexis/redux-entities#1.0.0
+yarn add brodeuralexis/redux-entities#1.1.0
 ```
 
 # Usage
