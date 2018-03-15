@@ -63,7 +63,11 @@ export function setEntities (state: EntitiesState, type: string, entities: Entit
  * @param ids The `id`s
  */
 export function unsetEntities (state: EntitiesState, type: string, ids: string[]): EntitiesState {
-  const oldEntities = state[type] || {}
+  const oldEntities = state[type]
+
+  if (oldEntities == null) {
+    return state
+  }
 
   const newEntities = {
     ...oldEntities

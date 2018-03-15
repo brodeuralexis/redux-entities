@@ -27,6 +27,10 @@ export function getEntity (state: State, type: string, id: string): object | nul
  * @returns An array of entities
  */
 export function getEntities (state: State, type: string, ids: string[]): object[] {
+  if (!hasType(state, type)) {
+    throw new Error(`Expected the "${type}" type to exist`)
+  }
+
   return ids.map(function (id) {
     const entity = getEntity(state, type, id)
 
@@ -67,4 +71,8 @@ export function getEntitiesSafe (state: State, type: string, ids: string[]): obj
  */
 export function hasEntity (state: State, type: string, id: string): boolean {
   return getEntity(state, type, id) != null
+}
+
+function hasType (state: State, type: string) {
+  return state[entitiesKey][type] != null
 }
