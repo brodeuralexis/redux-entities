@@ -1,4 +1,4 @@
-import { State } from './state';
+import { State, Type } from './state';
 /**
  * Returns the entity with the given `type` and `id`.  If the entity does not
  * exist, return `null`.
@@ -7,7 +7,7 @@ import { State } from './state';
  * @param id The id of the entity
  * @returns An entity or `null`
  */
-export declare function getEntity(state: State, type: string, id: string): object | null;
+export declare function getEntity(state: State, type: Type, id: string): object | null;
 /**
  * Returns a list of entities for all `id` supplied in the `ids` array.  If the
  * `id` does not point to a valid entity, an error is throw.
@@ -16,7 +16,7 @@ export declare function getEntity(state: State, type: string, id: string): objec
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export declare function getEntities(state: State, type: string, ids: string[]): object[];
+export declare function getEntities(state: State, type: Type, ids: string[]): object[];
 /**
  * Returns a list of entities for all `id` supplied in the `ids` array.  If the
  * `id` does not point to a valid entity, it is ignored in the resulting array.
@@ -25,7 +25,7 @@ export declare function getEntities(state: State, type: string, ids: string[]): 
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export declare function getEntitiesSafe(state: State, type: string, ids: string[]): object[];
+export declare function getEntitiesSafe(state: State, type: Type, ids: string[]): object[];
 /**
  * Indicates if an entity is present in the state by it's given `id`.
  * @param state The state
@@ -33,4 +33,4 @@ export declare function getEntitiesSafe(state: State, type: string, ids: string[
  * @param id The `id` of the entity
  * @returns The entity's presence
  */
-export declare function hasEntity(state: State, type: string, id: string): boolean;
+export declare function hasEntity(state: State, type: Type, id: string): boolean;

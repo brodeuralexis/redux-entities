@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { Entities } from './state';
+import { Entities, Type } from './state';
 /**
  * The type of the `SetEntitiesAction`.
  */
@@ -11,7 +11,7 @@ export declare const SET_ENTITIES: unique symbol;
 export interface SetEntitiesAction extends Action {
     type: typeof SET_ENTITIES;
     payload: {
-        type: string;
+        type: Type;
         entities: Entities;
     };
 }
@@ -22,7 +22,7 @@ export interface SetEntitiesAction extends Action {
  * @param entities The entities
  * @returns An `SetEntitiesAction`
  */
-export declare function setEntities(type: string, entities: Entities): SetEntitiesAction;
+export declare function setEntities(type: Type, entities: Entities): SetEntitiesAction;
 /**
  * The type of the `UnsetEntitiesAction`.
  */
@@ -34,7 +34,7 @@ export declare const UNSET_ENTITIES: unique symbol;
 export interface UnsetEntitiesAction extends Action {
     type: typeof UNSET_ENTITIES;
     payload: {
-        type: string;
+        type: Type;
         ids: string[];
     };
 }
@@ -44,7 +44,7 @@ export interface UnsetEntitiesAction extends Action {
  * @param ids The `id`s of the entities
  * @returns An `UnsetEntitiesAction`
  */
-export declare function unsetEntities(type: string, ids: string[]): UnsetEntitiesAction;
+export declare function unsetEntities(type: Type, ids: string[]): UnsetEntitiesAction;
 /**
  * Indicates that the user wants to add a given entity to the state.
  * @param type The type
@@ -52,12 +52,12 @@ export declare function unsetEntities(type: string, ids: string[]): UnsetEntitie
  * @param entity The entity
  * @returns A `SetEntitiesAction`
  */
-export declare function setEntity(type: string, id: string, entity: object): SetEntitiesAction;
+export declare function setEntity(type: Type, id: string, entity: object): SetEntitiesAction;
 /**
  * Indicates that the user wants to remove an entity by it's given `id`.
  * @param type The type
  * @param id The `id`
  * @returns An `UnsetEntitiesAction`
  */
-export declare function unsetEntity(type: string, id: string): UnsetEntitiesAction;
+export declare function unsetEntity(type: Type, id: string): UnsetEntitiesAction;
 export declare type EntitiesAction = SetEntitiesAction | UnsetEntitiesAction;

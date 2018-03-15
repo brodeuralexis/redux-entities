@@ -24,12 +24,13 @@ const reducer = combineReducers({
 })
 ```
 
-Your can then use the `createEntityHelpers/1` function to create action creators
+You can then use the `createEntityHelpers/1` function to create action creators
 and selectors:
 
 ```ts
 import { createEntityHelpers } from 'redux-entities'
 
+export const User = Symbol('User')
 export type User = {
   id: string,
   email: string,
@@ -50,7 +51,7 @@ export const {
     getEntity: getUser,
     hasEntity: hasUser
   }
-} = createEntityHelpers<User>('user')
+} = createEntityHelpers<User>(User)
 ```
 
 The exported function will now allow one to manage user entities.
@@ -58,7 +59,7 @@ The exported function will now allow one to manage user entities.
 # API
 
 ```ts
-function createEntityHelpers<TEntity extends {}> (type: string): {
+function createEntityHelpers<TEntity extends {}> (type: string | symbol): {
   actions: {
     setEntities: (entities: { [id: string]: TEntity }): Action,
     setEntity: (id: string, entity: TEntity): Action,

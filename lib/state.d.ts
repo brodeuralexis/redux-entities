@@ -2,6 +2,7 @@
  * The key to use for this module.
  */
 export declare const entitiesKey: unique symbol;
+export declare type Type = string | symbol;
 /**
  * The part of the state this module knows about.
  */
@@ -37,7 +38,7 @@ export declare const initialState: EntitiesState;
  * @param type The type of the entities
  * @param entities The entities
  */
-export declare function setEntities(state: EntitiesState, type: string, entities: Entities): EntitiesState;
+export declare function setEntities(state: EntitiesState, type: Type, entities: Entities): EntitiesState;
 /**
  * Removes the given `id`s from the map of entities.  If the entity with one of
  * the given `id` does not exist, do nothing.
@@ -45,4 +46,4 @@ export declare function setEntities(state: EntitiesState, type: string, entities
  * @param type The type of the entities
  * @param ids The `id`s
  */
-export declare function unsetEntities(state: EntitiesState, type: string, ids: string[]): EntitiesState;
+export declare function unsetEntities(state: EntitiesState, type: Type, ids: string[]): EntitiesState;

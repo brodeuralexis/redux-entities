@@ -1,4 +1,4 @@
-import { State, entitiesKey } from './state'
+import { State, Type, entitiesKey } from './state'
 
 /**
  * Returns the entity with the given `type` and `id`.  If the entity does not
@@ -8,7 +8,7 @@ import { State, entitiesKey } from './state'
  * @param id The id of the entity
  * @returns An entity or `null`
  */
-export function getEntity (state: State, type: string, id: string): object | null {
+export function getEntity (state: State, type: Type, id: string): object | null {
   const entities = state[entitiesKey][type]
 
   if (!entities) {
@@ -26,7 +26,7 @@ export function getEntity (state: State, type: string, id: string): object | nul
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export function getEntities (state: State, type: string, ids: string[]): object[] {
+export function getEntities (state: State, type: Type, ids: string[]): object[] {
   if (!hasType(state, type)) {
     throw new Error(`Expected the "${type}" type to exist`)
   }
@@ -50,7 +50,7 @@ export function getEntities (state: State, type: string, ids: string[]): object[
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export function getEntitiesSafe (state: State, type: string, ids: string[]): object[] {
+export function getEntitiesSafe (state: State, type: Type, ids: string[]): object[] {
   return ids.reduce<object[]>(function (entities, id) {
     const entity = getEntity(state, type, id)
 
@@ -69,10 +69,10 @@ export function getEntitiesSafe (state: State, type: string, ids: string[]): obj
  * @param id The `id` of the entity
  * @returns The entity's presence
  */
-export function hasEntity (state: State, type: string, id: string): boolean {
+export function hasEntity (state: State, type: Type, id: string): boolean {
   return getEntity(state, type, id) != null
 }
 
-function hasType (state: State, type: string) {
+function hasType (state: State, type: Type) {
   return state[entitiesKey][type] != null
 }

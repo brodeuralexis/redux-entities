@@ -8,11 +8,11 @@ import { createActions } from './create-actions'
 import { createActionMatchers } from './create-action-matchers'
 import { createSelectors } from './create-selectors'
 
-export function createEntityHelpers<TType extends object> (type: string) {
+export function createEntityHelpers<TEntity extends object> (type: string | symbol) {
   return {
-    matchers: createActionMatchers<TType>(type),
-    actions: createActions<TType>(type),
-    selectors: createSelectors<TType>(type)
+    matchers: createActionMatchers<TEntity>(type),
+    actions: createActions<TEntity>(type),
+    selectors: createSelectors<TEntity>(type)
   }
 }
 

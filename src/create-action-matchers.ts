@@ -1,11 +1,12 @@
 import { Action } from 'redux'
 import { SetEntitiesAction, SET_ENTITIES, UnsetEntitiesAction, UNSET_ENTITIES } from './actions'
+import { Type } from './state'
 
 /**
  * Creates action matchers for a specific entity.
  * @param type The type of the entity
  */
-export function createActionMatchers<TType extends object> (type: string) {
+export function createActionMatchers<TEntity extends object> (type: Type) {
   function _isSetEntities (action: Action): action is SetEntitiesAction {
     return action.type === SET_ENTITIES
   }

@@ -1,5 +1,5 @@
 import { Action } from 'redux'
-import { Entities } from './state'
+import { Entities, Type } from './state'
 
 // #region SET_ENTITIES
 /**
@@ -14,7 +14,7 @@ export const SET_ENTITIES = Symbol('@@redux-entities/SET_ENTITY')
 export interface SetEntitiesAction extends Action {
   type: typeof SET_ENTITIES,
   payload: {
-    type: string,
+    type: Type,
     entities: Entities
   }
 }
@@ -26,7 +26,7 @@ export interface SetEntitiesAction extends Action {
  * @param entities The entities
  * @returns An `SetEntitiesAction`
  */
-export function setEntities (type: string, entities: Entities): SetEntitiesAction {
+export function setEntities (type: Type, entities: Entities): SetEntitiesAction {
   return {
     type: SET_ENTITIES,
     payload: {
@@ -50,7 +50,7 @@ export const UNSET_ENTITIES = Symbol('@@redux-entities/UNSET_ENTITIES')
 export interface UnsetEntitiesAction extends Action {
   type: typeof UNSET_ENTITIES,
   payload: {
-    type: string,
+    type: Type,
     ids: string[]
   }
 }
@@ -61,7 +61,7 @@ export interface UnsetEntitiesAction extends Action {
  * @param ids The `id`s of the entities
  * @returns An `UnsetEntitiesAction`
  */
-export function unsetEntities (type: string, ids: string[]): UnsetEntitiesAction {
+export function unsetEntities (type: Type, ids: string[]): UnsetEntitiesAction {
   return {
     type: UNSET_ENTITIES,
     payload: {
@@ -80,7 +80,7 @@ export function unsetEntities (type: string, ids: string[]): UnsetEntitiesAction
  * @param entity The entity
  * @returns A `SetEntitiesAction`
  */
-export function setEntity (type: string, id: string, entity: object) {
+export function setEntity (type: Type, id: string, entity: object) {
   return setEntities(type, { [id]: entity })
 }
 
@@ -90,7 +90,7 @@ export function setEntity (type: string, id: string, entity: object) {
  * @param id The `id`
  * @returns An `UnsetEntitiesAction`
  */
-export function unsetEntity (type: string, id: string) {
+export function unsetEntity (type: Type, id: string) {
   return unsetEntities(type, [id])
 }
 // #endregion

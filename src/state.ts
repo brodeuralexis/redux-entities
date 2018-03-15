@@ -3,6 +3,8 @@
  */
 export const entitiesKey = Symbol('entities')
 
+export type Type = string | symbol
+
 /**
  * The part of the state this module knows about.
  */
@@ -43,7 +45,7 @@ export const initialState: EntitiesState = {}
  * @param type The type of the entities
  * @param entities The entities
  */
-export function setEntities (state: EntitiesState, type: string, entities: Entities): EntitiesState {
+export function setEntities (state: EntitiesState, type: Type, entities: Entities): EntitiesState {
   const oldEntities = state[type] || {}
 
   return {
@@ -62,7 +64,7 @@ export function setEntities (state: EntitiesState, type: string, entities: Entit
  * @param type The type of the entities
  * @param ids The `id`s
  */
-export function unsetEntities (state: EntitiesState, type: string, ids: string[]): EntitiesState {
+export function unsetEntities (state: EntitiesState, type: Type, ids: string[]): EntitiesState {
   const oldEntities = state[type]
 
   if (oldEntities == null) {

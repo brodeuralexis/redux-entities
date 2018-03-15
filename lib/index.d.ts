@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { SetEntitiesAction, UnsetEntitiesAction } from './actions';
 import { entitiesKey } from './state';
 import { entitiesReducer } from './reducer';
-export declare function createEntityHelpers<TType extends object>(type: string): {
+export declare function createEntityHelpers<TEntity extends object>(type: string | symbol): {
     matchers: {
         isSetEntities: (action: Action) => action is SetEntitiesAction;
         isUnsetEntities: (action: Action) => action is UnsetEntitiesAction;
@@ -10,9 +10,9 @@ export declare function createEntityHelpers<TType extends object>(type: string):
         isUnsetEntity: (id: string) => (action: Action) => boolean;
     };
     actions: {
-        setEntity(id: string, entity: TType): SetEntitiesAction;
+        setEntity(id: string, entity: TEntity): SetEntitiesAction;
         setEntities(entities: {
-            [id: string]: TType;
+            [id: string]: TEntity;
         }): SetEntitiesAction;
         unsetEntity(id: string): UnsetEntitiesAction;
         unsetEntities(ids: string[]): UnsetEntitiesAction;
@@ -24,21 +24,21 @@ export declare function createEntityHelpers<TType extends object>(type: string):
                     [id: string]: object;
                 };
             };
-        }, id: string): TType | null;
+        }, id: string): TEntity | null;
         getEntities(state: {
             [entitiesKey]: {
                 [type: string]: {
                     [id: string]: object;
                 };
             };
-        }, ids: string[]): TType[];
+        }, ids: string[]): TEntity[];
         getEntitiesSafe(state: {
             [entitiesKey]: {
                 [type: string]: {
                     [id: string]: object;
                 };
             };
-        }, ids: string[]): TType[];
+        }, ids: string[]): TEntity[];
         hasEntity(state: {
             [entitiesKey]: {
                 [type: string]: {
