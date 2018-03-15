@@ -7,12 +7,14 @@ export default {
   output: {
     file: './lib/index.js',
     format: 'umd',
-    name: 'ReduxEntities'
+    name: 'ReduxEntities',
+    sourcemap: true
   },
 
   plugins: [
     typescript({
-      typescript: require('typescript')
+      typescript: require('typescript'),
+      exclude: 'src/**.test.ts'
     })
   ]
 }
