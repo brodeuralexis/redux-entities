@@ -3,12 +3,12 @@
 ## _NPM_
 
 ```sh
-npm install --save brodeuralexis/redux-entities#1.1.0
+npm install --save brodeuralexis/redux-odyssey#1.1.0
 ```
 
 ## _Yarn_
 ```
-yarn add brodeuralexis/redux-entities#1.1.0
+yarn add brodeuralexis/redux-odyssey#1.1.0
 ```
 
 # Usage
@@ -16,7 +16,7 @@ yarn add brodeuralexis/redux-entities#1.1.0
 Include the following in your call to `combineReducers/1`:
 
 ```js
-import { entities } from 'redux-entities'
+import { entities } from 'redux-odyssey'
 
 const reducer = combineReducers({
   // snip
@@ -28,7 +28,7 @@ You can then use the `createEntityHelpers/1` function to create action creators
 and selectors:
 
 ```ts
-import { createEntityHelpers } from 'redux-entities'
+import { createEntityHelpers } from 'redux-odyssey'
 
 export const User = Symbol('User')
 export type User = {

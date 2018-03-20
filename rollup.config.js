@@ -7,7 +7,7 @@ export default {
   output: {
     file: './lib/index.js',
     format: 'umd',
-    name: 'ReduxEntities',
+    name: 'ReduxOdyssey',
     sourcemap: true
   },
 

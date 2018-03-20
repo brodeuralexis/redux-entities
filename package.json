@@ -1,9 +1,9 @@
 {
-  "name": "redux-entities",
+  "name": "redux-odyssey",
   "version": "1.1.1",
-  "description": "A redux solution for storing entities.",
+  "description": "A redux solution for managing entities.",
   "main": "lib/index.js",
-  "repository": "https://github.com/brodeuralexis/redux-entities",
+  "repository": "https://github.com/brodeuralexis/redux-odyssey",
   "author": "Alexis Brodeur <brodeuralexis@gmail.com>",
   "license": "MIT",
   "private": false,
