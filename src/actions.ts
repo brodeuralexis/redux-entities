@@ -1,5 +1,8 @@
-import { Action } from 'redux'
 import { Entities, Type } from './state'
+
+export type Action = {
+  type: any
+}
 
 // #region SET_ENTITIES
 /**

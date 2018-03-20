@@ -1,13 +1,20 @@
-import { Action } from 'redux';
 import { SetEntitiesAction, UnsetEntitiesAction } from './actions';
 import { entitiesKey } from './state';
 import { entitiesReducer } from './reducer';
 export declare function createEntityHelpers<TEntity extends object>(type: string | symbol): {
     matchers: {
-        isSetEntities: (action: Action) => action is SetEntitiesAction;
-        isUnsetEntities: (action: Action) => action is UnsetEntitiesAction;
-        isSetEntity: (id: string) => (action: Action) => boolean;
-        isUnsetEntity: (id: string) => (action: Action) => boolean;
+        isSetEntities: (action: {
+            type: any;
+        }) => action is SetEntitiesAction;
+        isUnsetEntities: (action: {
+            type: any;
+        }) => action is UnsetEntitiesAction;
+        isSetEntity: (id: string) => (action: {
+            type: any;
+        }) => boolean;
+        isUnsetEntity: (id: string) => (action: {
+            type: any;
+        }) => boolean;
     };
     actions: {
         setEntity(id: string, entity: TEntity): SetEntitiesAction;

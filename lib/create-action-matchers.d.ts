@@ -1,5 +1,4 @@
-import { Action } from 'redux';
-import { SetEntitiesAction, UnsetEntitiesAction } from './actions';
+import { Action, SetEntitiesAction, UnsetEntitiesAction } from './actions';
 import { Type } from './state';
 /**
  * Creates action matchers for a specific entity.

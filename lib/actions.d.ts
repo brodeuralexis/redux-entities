@@ -1,5 +1,7 @@
-import { Action } from 'redux';
 import { Entities, Type } from './state';
+export declare type Action = {
+    type: any;
+};
 /**
  * The type of the `SetEntitiesAction`.
  */

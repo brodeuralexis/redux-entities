@@ -1,5 +1,3 @@
-import { Action } from 'redux'
-
 import { SetEntitiesAction, UnsetEntitiesAction } from './actions'
 import { entitiesKey } from './state'
 import { entitiesReducer } from './reducer'

@@ -1,5 +1,4 @@
-import { Action } from 'redux'
-import { EntitiesAction, SET_ENTITIES, UNSET_ENTITIES } from './actions'
+import { Action, EntitiesAction, SET_ENTITIES, UNSET_ENTITIES } from './actions'
 import { EntitiesState, initialState, setEntities, unsetEntities } from './state'
 
 /**
