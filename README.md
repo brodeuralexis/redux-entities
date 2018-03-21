@@ -6,12 +6,12 @@
 ## _NPM_
 
 ```sh
-npm install --save brodeuralexis/redux-odyssey#1.1.0
+npm install --save redux-odyssey
 ```
 
 ## _Yarn_
 ```
-yarn add brodeuralexis/redux-odyssey#1.1.0
+yarn add redux-odyssey
 ```
 
 # Usage
@@ -19,15 +19,15 @@ yarn add brodeuralexis/redux-odyssey#1.1.0
 Include the following in your call to `combineReducers/1`:
 
 ```js
-import { entities } from 'redux-odyssey'
+import { reducers as odysseyReducers } from 'redux-odyssey'
 
 const reducer = combineReducers({
   // snip
-  ...entities
+  ...odysseyReducers
 })
 ```
 
-You can then use the `createEntityHelpers/1` function to create action creators
+You can then use the `Resource.createResource/1` function to create action creators
 and selectors:
 
 ```ts
@@ -42,106 +42,100 @@ export type User = {
 }
 
 export const {
-  actions: {
-    setEntities: setUsers,
-    setEntity: setUser,
-    unsetEntities: unsetUsers,
-    unsetEntity: unsetUser
-  },
-  selectors: {
-    getEntities: getUsers,
-    getEntitiesSafe: getUsersSafe,
-    getEntity: getUser,
-    hasEntity: hasUser
-  }
-} = createEntityHelpers<User>(User)
+  // Action creators
+  setEntities: setUsers,
+  setEntity: setUser,
+  unsetEntities: unsetUsers,
+  unsetEntity: unsetUser
+  // Selectors
+  getEntities: getUsers,
+  getEntitiesSafe: getUsersSafe,
+  getEntity: getUser,
+  hasEntity: hasUser
+} = Resource.createResource<User>(User)
 ```
 
-The exported function will now allow one to manage user entities.
+The exported function will now allow one to manage resources.
 
 # API
 
 ```ts
-function createEntityHelpers<TEntity extends {}> (type: string | symbol): {
-  actions: {
-    setEntities: (entities: { [id: string]: TEntity }): Action,
-    setEntity: (id: string, entity: TEntity): Action,
-    unsetEntities: (ids: string[]): Action,
-    unsetEntity: (id: string): Action
-  },
-  selectors: {
-    getEntities: (ids: string[]): TEntity[],
-    getEntitiesSafe: (ids: string[]): TEntity[],
-    getEntity: (id: string): TEntity | null,
-    hasEntity: (id: string): boolean
-  }
+function createResource<T = {}> (type: string | symbol): {
+  setEntities: (entities: { [id: string]: TEntity }): Action,
+  setEntity: (id: string, entity: TEntity): Action,
+  unsetEntities: (ids: string[]): Action,
+  unsetEntity: (id: string): Action
+  getEntities: (ids: string[]): TEntity[],
+  getEntitiesSafe: (ids: string[]): TEntity[],
+  getEntity: (id: string): TEntity | null,
+  hasEntity: (id: string): boolean
 }
 ```
 
-The `createEntityHelpers/1` function creates partially applied action creators and selectors to read and modify the entities stored in the state.
+The `createResource/1` function creates partially applied action creators and selectors to read and modify the resources stored in the state.
 
 ## Helpers
 
 ### Actions
 
 ```ts
-function setEntities (entities: { [id: string]: TEntity }): Action
+function setResources (resources: { [id: string]: T }): Action
 ```
 
-Adds or updates all the entities in the given object by their keys, which represents their `id`s.
+Adds or updates all the resources in the given object by their keys, which represents their `id`s.
 
 ---
 
 ```ts
-function setEntity (id: string, entity: TEntity): Action
+function setResource (resourceId: string, resource: T): Action
 ```
 
-Adds or updates the given entity according to its `id`.
+Adds or updates the given resource according to its `id`.
 
 ---
 
 ```ts
-function unsetEntities (ids: string[]): Action
+function unsetResources (resourceIds: string[]): Action
 ```
 
-Removes the entities with the given `id`s from the state.
+Removes the resources with the given `id`s from the state.
 
 ---
 
 ```ts
-function unsetEntity (id: string): Action
+function unsetResource (resourceId: string): Action
 ```
 
-Remove sthe entity with the given `id`.
+Removes the resource with the given `id`.
 
 ### Selectors
 
 ```ts
-function getEntities (ids: string[]): TEntity[]
+function getResources (resourceIds: string[]): T[]
 ```
 
-Returns all the entities with the given `id`s.  If an entity does not exist, this function will throw an error.
+Returns all the resources with the given `id`s.  If an resource does not exist, this function will throw an error.
 
 ---
 
 ```ts
-function getEntitiesSafe(ids: string[]): TEntity[]
+function getResourcesSafe(resourceIds: string[]): T[]
 ```
 
-Returns all the entities with the given `id`s.  If an entity does not exist, it will be excluded from the resulting array.
+Returns all the resources with the given `id`s.  If a resource does not exist, it will be excluded from the resulting array.
 
 ---
 
 ```ts
-function getEntity (id: string): TEntity | null
+function getResource (resourceId: string): T | null
 ```
 
-Returns an entity by its `id`.  If the entity does not exist, `null` is returned.
+Returns a resource by its `id`.  If the resource does not exist, `null` is returned.
 
 ---
 
 ```ts
-function hasEntity (id: string): boolean
+function hasResource (id: string): boolean
 ```
 
-Indicates if the entity with the given `id` exists.
+Indicates if the resource with the given `id` exists.
