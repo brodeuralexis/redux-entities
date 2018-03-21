@@ -1,3 +1,6 @@
+# Redux Odyssey
+[![Build Status](https://travis-ci.org/brodeuralexis/redux-odyssey.svg?branch=master)](https://travis-ci.org/brodeuralexis/redux-odyssey)
+
 # Installation
 
 ## _NPM_
