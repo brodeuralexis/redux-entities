@@ -1,18 +1,18 @@
-export abstract class Loadable<T> {
-  public abstract match<U> (patterns: LoadablePatterns<T, U>): U
+export abstract class Loadable<T, E = Error> {
+  public abstract match<U> (patterns: LoadablePatterns<T, E, U>): U
 }
 
-export type $Patterns<T, U> = {
+export type $Patterns<T, E, U> = {
   NotLoaded (): U,
   Loading (): U,
   Loaded (data: T): U,
-  Failed (error: Error): U
+  Failed (error: E): U
 }
 
-export type LoadablePatterns<T, U> = $Patterns<T, U> | ({ _ (): U } & Partial<$Patterns<T, U>>)
+export type LoadablePatterns<T, E, U> = $Patterns<T, E, U> | ({ _ (): U } & Partial<$Patterns<T, E, U>>)
 
-const $NotLoaded = new class extends Loadable<any> {
-  public match<U> (patterns: LoadablePatterns<any, U>): U {
+const $NotLoaded = new class extends Loadable<any, any> {
+  public match<U> (patterns: LoadablePatterns<any, any, U>): U {
     if ('NotLoaded' in patterns) {
       return patterns.NotLoaded!()
     } else {
@@ -25,8 +25,8 @@ export function NotLoaded<T> (): Loadable<T> {
   return $NotLoaded
 }
 
-const $Loading = new class extends Loadable<any> {
-  public match<U> (patterns: LoadablePatterns<any, U>): U {
+const $Loading = new class extends Loadable<any, any> {
+  public match<U> (patterns: LoadablePatterns<any, any, U>): U {
     if ('Loading' in patterns) {
       return patterns.Loading!()
     } else {
@@ -35,18 +35,18 @@ const $Loading = new class extends Loadable<any> {
   }
 }()
 
-export function Loading<T> (): Loadable<T> {
+export function Loading<T, E = Error> (): Loadable<T, E> {
   return $Loading
 }
 
-class $Loaded<T> extends Loadable<T> {
+class $Loaded<T, E = Error> extends Loadable<T, E> {
   public constructor (
     private readonly content: T
   ) {
     super()
   }
 
-  public match<U> (patterns: LoadablePatterns<T, U>): U {
+  public match<U> (patterns: LoadablePatterns<T, E, U>): U {
     if ('Loaded' in patterns) {
       return patterns.Loaded!(this.content)
     } else {
@@ -55,18 +55,18 @@ class $Loaded<T> extends Loadable<T> {
   }
 }
 
-export function Loaded<T> (content: T): Loadable<T> {
+export function Loaded<T, E = Error> (content: T): Loadable<T, E> {
   return new $Loaded(content)
 }
 
-class $Failed<T> extends Loadable<T> {
+class $Failed<T, E = Error> extends Loadable<T, E> {
   public constructor (
-    private readonly error: Error
+    private readonly error: E
   ) {
     super()
   }
 
-  public match<U> (patterns: LoadablePatterns<T, U>): U {
+  public match<U> (patterns: LoadablePatterns<T, E, U>): U {
     if ('Failed' in patterns) {
       return patterns.Failed!(this.error)
     } else {

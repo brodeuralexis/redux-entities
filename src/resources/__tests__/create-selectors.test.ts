@@ -1,3 +1,5 @@
+import { Loaded } from '../../loadable'
+
 import { createSelectors } from '../create-selectors'
 import { resourcesKey } from '../state'
 import { getResource, getResources, getResourcesSafe, hasResource } from '../selectors'
@@ -7,8 +9,8 @@ const selectors = createSelectors('<resourceType>')
 const state = {
   [resourcesKey]: {
     '<resourceType>': {
-      '1': { id: '1' },
-      '2': { id: '2' }
+      '1': Loaded({ id: '1' }),
+      '2': Loaded({ id: '2' })
     }
   }
 }

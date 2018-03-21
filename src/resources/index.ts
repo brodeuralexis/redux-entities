@@ -1,4 +1,6 @@
 /* tslint:disable */
+import { Loadable } from '../loadable'
+
 import { SetResourcesAction, UnsetResourcesAction } from './actions'
 import { resourcesKey } from './state'
 import { resourcesReducer } from './reducer'
@@ -8,11 +10,11 @@ import { createActionMatchers } from './create-action-matchers'
 import { createSelectors } from './create-selectors'
 /* tslint:enable */
 
-export function createResource<TEntity extends object> (type: string | symbol) {
+export function createResource<T = {}> (type: string | symbol) {
   return {
-    ...createActionMatchers<TEntity>(type),
-    ...createActions<TEntity>(type),
-    ...createSelectors<TEntity>(type)
+    ...createActionMatchers<T>(type),
+    ...createActions<T>(type),
+    ...createSelectors<T>(type)
   }
 }
 

@@ -1,3 +1,5 @@
+import { Loadable } from '../loadable'
+
 /**
  * The key to use for this module.
  */
@@ -16,14 +18,14 @@ export type State = {
  * The structure of the state associated with the reducer.
  */
 export type ResourcesState = {
-  [type: string]: Resources
+  [type: string]: Resources<any>
 }
 
 /**
  * The map of resources.
  */
 export type Resources<T = {}> = {
-  [entityId: string]: T
+  [entityId: string]: Loadable<T>
 }
 
 /**

@@ -1,3 +1,5 @@
+import { Loadable, NotLoaded } from '../loadable'
+
 import { State, Type, resourcesKey } from './state'
 
 /**
@@ -8,14 +10,14 @@ import { State, Type, resourcesKey } from './state'
  * @param id The id of the resource
  * @returns An resource or `null`
  */
-export function getResource<T = {}> (state: State, resourceType: Type, id: string): T | null {
+export function getResource<T = {}> (state: State, resourceType: Type, id: string): Loadable<T> {
   const resources = state[resourcesKey][resourceType]
 
   if (!resources) {
-    return null
+    return NotLoaded()
   }
 
-  return (resources[id] || null) as T | null
+  return resources[id] || NotLoaded()
 }
 
 /**
@@ -26,20 +28,10 @@ export function getResource<T = {}> (state: State, resourceType: Type, id: strin
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export function getResources<T = {}> (state: State, resourceType: Type, ids: string[]): T[] {
-  if (!hasResourceType(state, resourceType)) {
-    throw new Error(`Expected the "${resourceType}" type to exist`)
-  }
-
+export function getResources<T = {}> (state: State, resourceType: Type, ids: string[]): Loadable<T>[] {
   return ids.map(function (id) {
-    const resource = getResource(state, resourceType, id)
-
-    if (!resource) {
-      throw new Error(`Expected the "${resourceType}" with identified by "${id}" to exist`)
-    }
-
-    return resource
-  }) as T[]
+    return getResource(state, resourceType, id)
+  })
 }
 
 /**
@@ -51,12 +43,14 @@ export function getResources<T = {}> (state: State, resourceType: Type, ids: str
  * @param ids An array of resource id
  * @returns An array of resources
  */
-export function getResourcesSafe<T = {}> (state: State, resourceType: Type, ids: string[]): T[] {
-  return ids.reduce<T[]>(function (resources, id) {
+export function getResourcesSafe<T = {}> (state: State, resourceType: Type, ids: string[]): Loadable<T>[] {
+  console.warn(`'${getResourcesSafe.name}/${getResourcesSafe.length}' is deprecated`)
+
+  return ids.reduce<Loadable<T>[]>(function (resources, id) {
     const resource = getResource(state, resourceType, id)
 
     if (resource) {
-      resources.push(resource as T)
+      resources.push(resource)
     }
 
     return resources
@@ -67,13 +61,12 @@ export function getResourcesSafe<T = {}> (state: State, resourceType: Type, ids:
  * Indicates if an resources is present in the state by it's given `id`.
  * @param state The state
  * @param resourceType The type of resource
- * @param id The `id` of the resource
+ * @param resourceId The `id` of the resource
  * @returns The resource's presence
  */
-export function hasResource (state: State, resourceType: Type, id: string): boolean {
-  return Boolean(getResource(state, resourceType, id))
-}
-
-function hasResourceType (state: State, resourceType: Type) {
-  return Boolean(state[resourcesKey][resourceType])
+export function hasResource (state: State, resourceType: Type, resourceId: string): boolean {
+  return getResource(state, resourceType, resourceId).match({
+    Loaded: () => true,
+    _: () => false
+  })
 }

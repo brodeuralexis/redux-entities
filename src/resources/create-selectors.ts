@@ -1,3 +1,5 @@
+import { Loadable } from '../loadable'
+
 import { State, Type } from './state'
 import { getResource, getResources, getResourcesSafe, hasResource } from './selectors'
 
@@ -7,13 +9,13 @@ import { getResource, getResources, getResourcesSafe, hasResource } from './sele
  */
 export function createSelectors<T = {}> (resourceType: Type) {
   return {
-    getResource (state: State, id: string): T | null {
+    getResource (state: State, id: string): Loadable<T> {
       return getResource<T>(state, resourceType, id)
     },
-    getResources (state: State, ids: string[]): T[] {
+    getResources (state: State, ids: string[]): Loadable<T>[] {
       return getResources<T>(state, resourceType, ids)
     },
-    getResourcesSafe (state: State, ids: string[]): T[] {
+    getResourcesSafe (state: State, ids: string[]): Loadable<T>[] {
       return getResourcesSafe<T>(state, resourceType, ids)
     },
     hasResource (state: State, id: string): boolean {
