@@ -1,6 +1,6 @@
 {
   "name": "redux-odyssey",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A redux solution for managing entities.",
   "main": "lib/index.js",
   "repository": "https://github.com/brodeuralexis/redux-odyssey",
