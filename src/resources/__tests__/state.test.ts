@@ -22,12 +22,12 @@ describe(`${setResources.name}/3`, function () {
     ).toEqual({
       '<resourceType>': {
         ...state['<resourceType>'],
-        '3': {
+        '3': Loaded({
           id: '3'
-        },
-        '4': {
+        }),
+        '4': Loaded({
           id: '4'
-        }
+        })
       }
     })
   })
@@ -38,9 +38,9 @@ describe(`${setResources.name}/3`, function () {
     ).toEqual({
       ...state,
       '<new resourceType>': {
-        '3': {
+        '3': Loaded({
           id: '3'
-        }
+        })
       }
     })
   })
@@ -52,10 +52,10 @@ describe(`${setResources.name}/3`, function () {
       ...state,
       '<resourceType>': {
         ...state['<resourceType>'],
-        '1': {
+        '1': Loaded({
           id: '1',
           modified: true
-        }
+        })
       }
     })
   })
@@ -67,9 +67,9 @@ describe(`${unsetResources.name}/3`, function () {
       unsetResources(state, '<resourceType>', ['1', '2'])
     ).toEqual({
       '<resourceType>': {
-        '3': {
+        '3': Loaded({
           id: '3'
-        }
+        })
       }
     })
   })
@@ -85,12 +85,12 @@ describe(`${unsetResources.name}/3`, function () {
       unsetResources(state, '<resourceType>', ['1', '-1'])
     ).toEqual({
       '<resourceType>': {
-        '2': {
+        '2': Loaded({
           id: '2'
-        },
-        '3': {
+        }),
+        '3': Loaded({
           id: '3'
-        }
+        })
       }
     })
   })
