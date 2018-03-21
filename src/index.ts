@@ -26,3 +26,5 @@ export const entities = {
 
 export { entitiesReducer } from './reducer'
 export { entitiesKey } from './state'
+
+export * from './loadable'
