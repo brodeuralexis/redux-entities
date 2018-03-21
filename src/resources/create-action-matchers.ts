@@ -5,7 +5,7 @@ import { Type } from './state'
  * Creates action matchers for a specific resource.
  * @param resourceType The type of the resource
  */
-export function createActionMatchers<_T = {}> (resourceType: Type) {
+export function createActionMatchers<_T = {}, _E = Error> (resourceType: Type) {
   function _isSetResources (action: any): action is SetResourcesAction {
     return typeof action === 'object' && action.type === SET_RESOURCES
   }

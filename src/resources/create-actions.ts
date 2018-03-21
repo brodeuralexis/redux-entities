@@ -9,19 +9,19 @@ import { setResources, setResource, unsetResources, unsetResource, SetResourcesA
  * Creates action creators for the given resource type.
  * @param resourceType The type of the resource
  */
-export function createActions<T = {}> (resourceType: Type) {
+export function createActions<T = {}, E = Error> (resourceType: Type) {
   return {
-    setResource (resourceId: string, resource: Loadable<T>) {
-      return setResource(resourceType, resourceId, resource)
+    setResource (resourceId: string, resource: Loadable<T, E>) {
+      return setResource<T, E>(resourceType, resourceId, resource)
     },
-    setResources (resources: Resources<T>) {
-      return setResources(resourceType, resources)
+    setResources (resources: Resources<T, E>) {
+      return setResources<T, E>(resourceType, resources)
     },
     unsetResource (resourceId: string) {
-      return unsetResource(resourceType, resourceId)
+      return unsetResource<T, E>(resourceType, resourceId)
     },
     unsetResources (resourceIds: string[]) {
-      return unsetResources(resourceType, resourceIds)
+      return unsetResources<T, E>(resourceType, resourceIds)
     }
   }
 }

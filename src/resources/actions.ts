@@ -13,11 +13,11 @@ export const SetResourcesAction = Symbol('SetResourcesAction')
  * An action indicating the fact that the user wants to add resources to the
  * state.
  */
-export interface SetResourcesAction<T = {}> {
+export interface SetResourcesAction<T = {}, E = Error> {
   type: typeof SET_RESOURCES,
   payload: {
     resourceType: Type,
-    resources: Resources<T>
+    resources: Resources<T, E>
   }
 }
 
@@ -28,7 +28,7 @@ export interface SetResourcesAction<T = {}> {
  * @param resources The resources
  * @returns An `SetResourcesAction`
  */
-export function setResources<T = {}> (resourceType: Type, resources: Resources<T>): SetResourcesAction<T> {
+export function setResources<T = {}, E = Error> (resourceType: Type, resources: Resources<T, E>): SetResourcesAction<T, E> {
   return {
     type: SET_RESOURCES,
     payload: {
@@ -51,7 +51,7 @@ export const UnsetResourcesAction = Symbol('UnsetResourcesAction')
  * An action indicating the fact that the user wants to remove resources from
  * the state by their `id`s.
  */
-export interface UnsetResourcesAction<_T = {}> {
+export interface UnsetResourcesAction<_T = {}, _E = Error> {
   type: typeof UNSET_RESOURCES,
   payload: {
     resourceType: Type,
@@ -65,7 +65,7 @@ export interface UnsetResourcesAction<_T = {}> {
  * @param resourceIds The `id`s of the resources
  * @returns An `UnsetResourcesAction`
  */
-export function unsetResources<T = {}> (resourceType: Type, resourceIds: string[]): UnsetResourcesAction<T> {
+export function unsetResources<T = {}, E = Error> (resourceType: Type, resourceIds: string[]): UnsetResourcesAction<T, E> {
   return {
     type: UNSET_RESOURCES,
     payload: {
@@ -84,8 +84,8 @@ export function unsetResources<T = {}> (resourceType: Type, resourceIds: string[
  * @param resource The resource
  * @returns A `SetResourcesAction`
  */
-export function setResource<T = {}> (resourceType: Type, resourceId: string, resource: Loadable<T>) {
-  return setResources<T>(resourceType, { [resourceId]: resource })
+export function setResource<T = {}, E = Error> (resourceType: Type, resourceId: string, resource: Loadable<T, E>) {
+  return setResources<T, E>(resourceType, { [resourceId]: resource })
 }
 
 /**
@@ -94,11 +94,11 @@ export function setResource<T = {}> (resourceType: Type, resourceId: string, res
  * @param resourceId The `id`
  * @returns An `UnsetResourcesAction`
  */
-export function unsetResource<T = {}> (resourceType: Type, resourceId: string) {
-  return unsetResources<T>(resourceType, [resourceId])
+export function unsetResource<T = {}, E = Error> (resourceType: Type, resourceId: string) {
+  return unsetResources<T, E>(resourceType, [resourceId])
 }
 // #endregion
 
 export type ResourcesAction
-  = SetResourcesAction<any>
-  | UnsetResourcesAction<any>
+  = SetResourcesAction<any, any>
+  | UnsetResourcesAction<any, any>

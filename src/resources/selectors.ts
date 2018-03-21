@@ -10,7 +10,7 @@ import { State, Type, resourcesKey } from './state'
  * @param id The id of the resource
  * @returns An resource or `null`
  */
-export function getResource<T = {}> (state: State, resourceType: Type, id: string): Loadable<T> {
+export function getResource<T = {}, E = Error> (state: State, resourceType: Type, id: string): Loadable<T, E> {
   const resources = state[resourcesKey][resourceType]
 
   if (!resources) {
@@ -28,7 +28,7 @@ export function getResource<T = {}> (state: State, resourceType: Type, id: strin
  * @param ids An array of entity id
  * @returns An array of entities
  */
-export function getResources<T = {}> (state: State, resourceType: Type, ids: string[]): Loadable<T>[] {
+export function getResources<T = {}, E = Error> (state: State, resourceType: Type, ids: string[]): Loadable<T, E>[] {
   return ids.map(function (id) {
     return getResource(state, resourceType, id)
   })
@@ -43,11 +43,11 @@ export function getResources<T = {}> (state: State, resourceType: Type, ids: str
  * @param ids An array of resource id
  * @returns An array of resources
  */
-export function getResourcesSafe<T = {}> (state: State, resourceType: Type, ids: string[]): Loadable<T>[] {
+export function getResourcesSafe<T = {}, E = Error> (state: State, resourceType: Type, ids: string[]): Loadable<T, E>[] {
   console.warn(`'${getResourcesSafe.name}/${getResourcesSafe.length}' is deprecated`)
 
-  return ids.reduce<Loadable<T>[]>(function (resources, id) {
-    const resource = getResource(state, resourceType, id)
+  return ids.reduce<Loadable<T, E>[]>(function (resources, id) {
+    const resource = getResource<T, E>(state, resourceType, id)
 
     if (resource) {
       resources.push(resource)

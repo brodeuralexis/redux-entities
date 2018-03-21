@@ -21,7 +21,7 @@ const $NotLoaded = new class extends Loadable<any, any> {
   }
 }()
 
-export function NotLoaded<T> (): Loadable<T> {
+export function NotLoaded<T, E> (): Loadable<T, E> {
   return $NotLoaded
 }
 
