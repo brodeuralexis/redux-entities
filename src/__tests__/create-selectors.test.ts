@@ -1,5 +1,5 @@
 import { createSelectors } from '../create-selectors'
-import { entitiesKey, State } from '../state'
+import { entitiesKey } from '../state'
 import { getEntity, getEntities, getEntitiesSafe, hasEntity } from '../selectors'
 
 const selectors = createSelectors('<type>')

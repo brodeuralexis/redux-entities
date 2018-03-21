@@ -1,5 +1,5 @@
 import { getEntities, getEntitiesSafe, getEntity, hasEntity } from '../selectors'
-import { State, entitiesKey } from '../state';
+import { State, entitiesKey } from '../state'
 
 const state: State = {
   [entitiesKey]: {

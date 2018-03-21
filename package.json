@@ -10,6 +10,7 @@
   "scripts": {
     "build": "yarn rollup -c",
     "test": "yarn jest",
+    "lint": "yarn tslint --project .",
     "prepublish": "yarn build"
   },
   "devDependencies": {

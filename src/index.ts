@@ -1,3 +1,4 @@
+/* tslint:disable */
 import { SetEntitiesAction, UnsetEntitiesAction } from './actions'
 import { entitiesKey } from './state'
 import { entitiesReducer } from './reducer'
@@ -5,6 +6,7 @@ import { entitiesReducer } from './reducer'
 import { createActions } from './create-actions'
 import { createActionMatchers } from './create-action-matchers'
 import { createSelectors } from './create-selectors'
+/* tslint:enable */
 
 export function createEntityHelpers<TEntity extends object> (type: string | symbol) {
   return {

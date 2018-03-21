@@ -67,7 +67,7 @@ export function setEntities (state: EntitiesState, type: Type, entities: Entitie
 export function unsetEntities (state: EntitiesState, type: Type, ids: string[]): EntitiesState {
   const oldEntities = state[type]
 
-  if (oldEntities == null) {
+  if (!oldEntities) {
     return state
   }
 

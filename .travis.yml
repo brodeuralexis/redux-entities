@@ -1,0 +1,12 @@
+language: node_js
+script:
+  - yarn lint
+  - yarn test
+deploy:
+  provider: npm
+  email: brodeuralexis@gmail.com
+  api_key:
+    secure: cbIDPo+lRwuano1OzH2XAwNcYkRXyRy73tq8gsd17Vs1YDVF6WhezwEnCH4bq1UqWKjghfg0mV+N95DRgcocaPR1CN+AqVCb5hGsNPnySYaa0aGURk8MpEs1tBmrcxX4d477pJr+YojdXVf5NdHsMjcxsbeaYx9oNu+mntZOKHN0vMnLM9MTidA6e7jyMEWTWFtYxc7Y9Dhs+Rq1ZSehlHG5PYiB8Dlk0GYqK6Xgtv8FgNpxR3UuoNoLVMcH6+QziW5saT3Zlw38JAltGgR5wd4vl27wXarUADrI36fFA2T2jla9m1qkOcg8kWieDJzCc6ytKqVmyfAu2BJHpIBu7vi6a+wlTkl3lbnGpLG2Grjo1ZpLJ3LEkpAAIEGbI9TisLBjmnZM6rPOZ3r2gLIt8Bk0+NMJki/iffhzneXRlL+cEJTfrckSgCQxUXVucgjR1K6GUaJWrgzYVjaOCLCGsmwIO521cFgcv/683D5RdYNFMTZghL235wBJTe9AWi4Ey24aleRZTQdr7ukCa49M7wgvZPG2qSO/h1d+ObTAw3hGxSHqGt4wK7I27T5LfdIbJIjaQq8QHSpr39cldCXbHADR/isPJAtq4aIiPUYowRZtC/6bIz2N59EX1SkEVOBuLX/SQFuIGUCjRIzRmLw/fjaT6OgCDd9sxg8jiBPd79o=
+  on:
+    tags: true
+    repo: brodeuralexis/redux-odyssey

@@ -5,7 +5,7 @@ import { Type } from './state'
  * Creates action matchers for a specific entity.
  * @param type The type of the entity
  */
-export function createActionMatchers<TEntity extends object> (type: Type) {
+export function createActionMatchers<_TEntity extends object> (type: Type) {
   function _isSetEntities (action: Action): action is SetEntitiesAction {
     return action.type === SET_ENTITIES
   }

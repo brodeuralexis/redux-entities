@@ -1,4 +1,4 @@
-import { setEntities, unsetEntities, entitiesKey, EntitiesState } from '../state'
+import { setEntities, unsetEntities, EntitiesState } from '../state'
 
 const state: EntitiesState = {
   '<type>': {

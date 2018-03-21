@@ -1,4 +1,4 @@
-import { Action, EntitiesAction, SET_ENTITIES, UNSET_ENTITIES } from './actions'
+import { EntitiesAction, SET_ENTITIES, UNSET_ENTITIES } from './actions'
 import { EntitiesState, initialState, setEntities, unsetEntities } from './state'
 
 /**
@@ -7,7 +7,7 @@ import { EntitiesState, initialState, setEntities, unsetEntities } from './state
  * @param action An action
  * @returns The new value of the state
  */
-export function entitiesReducer (state: EntitiesState, action: EntitiesAction): EntitiesState {
+export function entitiesReducer (state: EntitiesState = initialState, action: EntitiesAction): EntitiesState {
   switch (action.type) {
     case SET_ENTITIES: {
       return setEntities(state, action.payload.type, action.payload.entities)

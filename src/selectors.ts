@@ -15,7 +15,7 @@ export function getEntity (state: State, type: Type, id: string): object | null 
     return null
   }
 
-  return entities[id] as object || null
+  return entities[id] || null
 }
 
 /**
@@ -34,7 +34,7 @@ export function getEntities (state: State, type: Type, ids: string[]): object[] 
   return ids.map(function (id) {
     const entity = getEntity(state, type, id)
 
-    if (entity == null) {
+    if (!entity) {
       throw new Error(`Expected the "${type}" with identified by "${id}" to exist`)
     }
 
@@ -70,9 +70,9 @@ export function getEntitiesSafe (state: State, type: Type, ids: string[]): objec
  * @returns The entity's presence
  */
 export function hasEntity (state: State, type: Type, id: string): boolean {
-  return getEntity(state, type, id) != null
+  return Boolean(getEntity(state, type, id))
 }
 
 function hasType (state: State, type: Type) {
-  return state[entitiesKey][type] != null
+  return Boolean(state[entitiesKey][type])
 }

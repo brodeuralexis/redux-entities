@@ -1,5 +1,5 @@
 import { entitiesReducer } from '../reducer'
-import { initialState, setEntities, entitiesKey, unsetEntities } from '../state'
+import { initialState, setEntities, unsetEntities } from '../state'
 import { setEntity, unsetEntity } from '../actions'
 
 describe('entitiesReducer/2', function () {

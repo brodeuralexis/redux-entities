@@ -1,4 +1,4 @@
-import { State, entitiesKey, Type } from './state'
+import { State, Type } from './state'
 import { getEntity, getEntities, getEntitiesSafe, hasEntity } from './selectors'
 
 /**
