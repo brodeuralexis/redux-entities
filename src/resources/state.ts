@@ -18,14 +18,14 @@ export type State = {
  * The structure of the state associated with the reducer.
  */
 export type ResourcesState = {
-  [type: string]: Resources<any>
+  [type: string]: Resources<any, any>
 }
 
 /**
  * The map of resources.
  */
-export type Resources<T = {}> = {
-  [entityId: string]: Loadable<T>
+export type Resources<T = {}, E = Error> = {
+  [entityId: string]: Loadable<T, E>
 }
 
 /**
