@@ -1,8 +1,9 @@
 import { setResources, unsetResources, setResource, unsetResource, SetResourcesAction, UnsetResourcesAction } from '../actions'
+import { Loaded } from '../../loadable'
 
 describe('setResources/3', function () {
   it('should return a `SetResourcesAction`', function () {
-    const _: SetResourcesAction = setResources('<type>', { '<id>': { id: '<id>' } })
+    const _: SetResourcesAction = setResources('<type>', { '<id>': Loaded({ id: '<id>' }) })
   })
 })
 
@@ -16,7 +17,7 @@ describe('setResource/3', function () {
   it('should be an alias for `setResources/3` for working with a single resource', function () {
     const type = '<type>'
     const id = '<id>'
-    const resource = { id }
+    const resource = Loaded({ id })
 
     expect(
       setResource(type, id, resource)

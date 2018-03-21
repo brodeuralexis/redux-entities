@@ -1,5 +1,6 @@
 import { createActionMatchers } from '../create-action-matchers'
 import { setResources, setResource, unsetResources, unsetResource, SetResourcesAction, UnsetResourcesAction } from '../actions'
+import { Loaded } from '../../loadable'
 
 const matchers = createActionMatchers('<type>')
 
@@ -7,13 +8,13 @@ describe(`${createActionMatchers.name}/1`, function () {
   describe(`${matchers.isSetResources.name}/1`, function () {
     it(`should return 'true' if the action is a '${SetResourcesAction.toString()}' for the right 'type'`, function () {
       expect(
-        matchers.isSetResources(setResources('<type>', { '1': { id: '1' } }))
+        matchers.isSetResources(setResources('<type>', { '1': Loaded({ id: '1' }) }))
       ).toBe(true)
     })
 
     it(`should return 'false' if the 'type' is invalid`, function () {
       expect(
-        matchers.isSetResources(setResources('<invalid type>', { '1': { id: '1' } }))
+        matchers.isSetResources(setResources('<invalid type>', { '1': Loaded({ id: '1' }) }))
       ).toBe(false)
     })
 
@@ -28,19 +29,19 @@ describe(`${createActionMatchers.name}/1`, function () {
     describe('_/1', function () {
       it('should return true if the given entity with the given type is changing', function () {
         expect(
-          matchers.isSetResource('<id>')(setResource('<type>', '<id>', { id: '<id>' }))
+          matchers.isSetResource('<id>')(setResource('<type>', '<id>', Loaded({ id: '<id>' })))
         ).toBe(true)
       })
 
       it('should return `false` if the type does not match', function () {
         expect(
-          matchers.isSetResource('<id>')(setResource('<invalid type>', '<id>', { id: '<id>' }))
+          matchers.isSetResource('<id>')(setResource('<invalid type>', '<id>', Loaded({ id: '<id>' })))
         ).toBe(false)
       })
 
       it('should return `false` if the `id` does not match', function () {
         expect(
-          matchers.isSetResource('<invalid id>')(setResource('<type>', '<id>', { id: '<id>' }))
+          matchers.isSetResource('<invalid id>')(setResource('<type>', '<id>', Loaded({ id: '<id>' })))
         ).toBe(false)
       })
     })

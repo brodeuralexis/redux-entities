@@ -1,6 +1,7 @@
 import { createActions } from '../create-actions'
 
 import { setResource, setResources, unsetResource, unsetResources } from '../actions'
+import { Loaded } from '../../loadable'
 
 const actions = createActions('<resourceType>')
 
@@ -8,9 +9,9 @@ describe(`${createActions.name}/1`, function () {
   describe(`${actions.setResource.name}/2`, function () {
     it(`should partially apply '${setResource.name}/3' for the 'resourceType' parameter`, function () {
       expect(
-        actions.setResource('1', { id: '1' })
+        actions.setResource('1', Loaded({ id: '1' }))
       ).toEqual(
-        setResource('<resourceType>', '1', { id: '1' })
+        setResource('<resourceType>', '1', Loaded({ id: '1' }))
       )
     })
   })
@@ -18,9 +19,9 @@ describe(`${createActions.name}/1`, function () {
   describe(`${actions.setResources.name}/2`, function () {
     it(`should partially apply '${setResource.name}/2' for the 'resourceType' parameter`, function () {
       expect(
-        actions.setResources({ '2': { id: '2' } })
+        actions.setResources({ '2': Loaded({ id: '2' }) })
       ).toEqual(
-        setResources('<resourceType>', { '2': { id: '2' } })
+        setResources('<resourceType>', { '2': Loaded({ id: '2' }) })
       )
     })
   })
