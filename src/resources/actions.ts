@@ -1,4 +1,5 @@
 import { Resources, Type } from './state'
+import { Loadable } from '../loadable'
 
 // #region SET_RESOURCES
 /**
@@ -83,7 +84,7 @@ export function unsetResources<T = {}> (resourceType: Type, resourceIds: string[
  * @param resource The resource
  * @returns A `SetResourcesAction`
  */
-export function setResource<T = {}> (resourceType: Type, resourceId: string, resource: T) {
+export function setResource<T = {}> (resourceType: Type, resourceId: string, resource: Loadable<T>) {
   return setResources<T>(resourceType, { [resourceId]: resource })
 }
 

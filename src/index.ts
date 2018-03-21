@@ -1,6 +1,6 @@
-import * as Resources from './resources/index'
-export const Resources = Resources
+import * as _Resources from './resources/index'
+export const Resources = _Resources
 
-export default reducers = {
+export const reducers = {
   ...Resources.resources
 }

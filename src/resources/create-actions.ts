@@ -1,4 +1,6 @@
 import { Resources, Type } from './state'
+import { Loadable } from '../loadable'
+
 /* tslint:disable */
 import { setResources, setResource, unsetResources, unsetResource, SetResourcesAction, UnsetResourcesAction } from './actions'
 /* tslint:enable */
@@ -9,7 +11,7 @@ import { setResources, setResource, unsetResources, unsetResource, SetResourcesA
  */
 export function createActions<T = {}> (resourceType: Type) {
   return {
-    setResource (resourceId: string, resource: T) {
+    setResource (resourceId: string, resource: Loadable<T>) {
       return setResource(resourceType, resourceId, resource)
     },
     setResources (resources: Resources<T>) {

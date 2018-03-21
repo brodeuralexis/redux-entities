@@ -1,6 +1,7 @@
 import { resourcesReducer } from '../reducer'
 import { initialState, setResources, unsetResources } from '../state'
 import { setResource, unsetResource, SetResourcesAction, UnsetResourcesAction } from '../actions'
+import { Loaded } from '../../loadable'
 
 describe(`${resourcesReducer.name}/2`, function () {
   it('should not change the state in any way if the action is not known', function () {
@@ -10,12 +11,12 @@ describe(`${resourcesReducer.name}/2`, function () {
   })
 
   it(`should delegate the state modification to the '${setResources.name}/3' function from the 'state' module for a '${SetResourcesAction.toString()}'`, function () {
-    const action = setResource('<type>', '<id>', { id: '<id>' })
+    const action = setResource('<type>', '<id>', Loaded({ id: '<id>' }))
 
     expect(
       resourcesReducer(initialState, action)
     ).toEqual(
-      setResources(initialState, '<type>', { '<id>': { id: '<id>' } })
+      setResources(initialState, '<type>', { '<id>': Loaded({ id: '<id>' }) })
     )
   })
 
@@ -25,13 +26,13 @@ describe(`${resourcesReducer.name}/2`, function () {
     expect(
       resourcesReducer({
         '<type>': {
-          '<id>': { id: '<id>' }
+          '<id>': Loaded({ id: '<id>' })
         }
       }, action)
     ).toEqual(
       unsetResources({
         '<type>': {
-          '<id>': { id: '<id>' }
+          '<id>': Loaded({ id: '<id>' })
         }
       }, '<type>', ['<id>'])
     )
