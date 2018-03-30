@@ -1,8 +1,31 @@
-import * as _Resources from './resources/index'
-export const Resources = _Resources
-
+export * from './create-entity'
 export * from './loadable'
 
-export const reducers = {
-  ...Resources.resources
-}
+export {
+  UnsetPagesAction,
+  SetPagesAction,
+  UnsetEntitiesAction,
+  SetEntitiesAction,
+  OdysseyAction,
+
+  setEntities,
+  setEntity,
+  setPages,
+  setPage,
+
+  SET_ENTITIES,
+  UNSET_ENTITIES,
+  SET_PAGES,
+  UNSET_PAGES,
+
+  Page,
+  EntityState,
+  EntityPagesState,
+  EntityEntitiesState,
+
+  getEntities,
+  getEntity,
+  getPage,
+  getPageInformation,
+  hasEntity
+} from './module/index'
